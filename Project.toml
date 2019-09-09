@@ -1,0 +1,9 @@
+name = "MathematicalPredicates"
+uuid = "d92ed5c0-d2da-11e9-1f26-3721184dea2b"
+version = "0.1.0"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
