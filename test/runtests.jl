@@ -35,6 +35,10 @@ c2_3 = Conjunction([(a0, Int[]), (a1, Int[2]), (a2, Int[2, 1])]; N=2)
 @test !evaluate(c2, 4, 5)
 @test evaluate(c2_3, 4, 5)
 
+# default constructor
+@test Conjunction([(a0, Int[]), (a0, Int[]), (a0, Int[])]) isa Conjunction{Val{0}}
+@test Conjunction([(a0, Int[]), (a1, Int[2]), (a2, Int[2, 1])]) isa Conjunction{Val{2}}
+
 # disjunction
 d0 = Disjunction([(n0, Int[]), (a0, Int[])]; N=0)
 d0_3 = Disjunction([(n0, Int[]), (n0, Int[]), (n0, Int[])]; N=0)
@@ -49,6 +53,10 @@ d2_3 = Disjunction([(a0, Int[]), (a1, Int[2]), (a2, Int[2, 1])]; N=2)
 @test evaluate(d1_3, 4)
 @test evaluate(d2, 4, 5)
 @test evaluate(d2_3, 4, 5)
+
+# default constructor
+@test Disjunction([(a0, Int[]), (a0, Int[]), (a0, Int[])]) isa Disjunction{Val{0}}
+@test Disjunction([(a0, Int[]), (a1, Int[2]), (a2, Int[2, 1])]) isa Disjunction{Val{2}}
 
 # unary conjunction
 cu = Conjunction([n1, a1])

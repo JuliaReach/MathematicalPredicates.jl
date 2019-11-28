@@ -1,7 +1,7 @@
 struct Disjunction{N, VT<:AbstractVector{<:Tuple{<:Predicate, <:AbstractVector{Int}}}} <: Predicate{N}
     disjuncts::VT
 
-    function Disjunction(disjuncts::VT; N::Int=1
+    function Disjunction(disjuncts::VT; N::Int=maximum([length(v) for (p, v) in disjuncts])
                         ) where {VT<:AbstractVector{<:Tuple{<:Predicate, <:AbstractVector{Int}}}}
         return new{Val{N}, VT}(disjuncts)
     end

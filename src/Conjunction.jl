@@ -1,7 +1,7 @@
 struct Conjunction{N, VT<:AbstractVector{<:Tuple{<:Predicate, <:AbstractVector{Int}}}} <: Predicate{N}
     conjuncts::VT
 
-    function Conjunction(conjuncts::VT; N::Int=1
+    function Conjunction(conjuncts::VT; N::Int=maximum([length(v) for (p, v) in conjuncts])
                         ) where {VT<:AbstractVector{<:Tuple{<:Predicate, <:AbstractVector{Int}}}}
         return new{Val{N}, VT}(conjuncts)
     end
