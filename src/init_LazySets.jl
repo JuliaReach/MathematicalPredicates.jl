@@ -1,6 +1,7 @@
 export SetAtom, contains, iscontainedin, isdisjointfrom, intersects
 
 using .LazySets: LazySet, ⊆, isdisjoint
+import .LazySets: dim, project
 
 """
     SetAtom{S<:LazySet, T} <: Predicate{Val{1}}
@@ -29,6 +30,15 @@ end
 function evaluate(sa::SetAtom, args...)
     assert_same_length(sa, args...)
     return sa.f(sa.X, args...)
+end
+
+function dim(sa::SetAtom)
+    return dim(sa.X)
+end
+
+function project(sa::SetAtom, vars::AbstractVector{Int})
+    X_proj = project(sa.X, vars)
+    return SetAtom(X_proj, sa.f)
 end
 
 # ==========================================
