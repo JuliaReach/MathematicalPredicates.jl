@@ -6,7 +6,12 @@ struct Atom{N, T} <: Predicate{N}
     end
 end
 
-function evaluate(a::Atom{N}, args...) where {N}
+# function-like evaluation
+@inline function (a::Atom)(args...)
+    evaluate(a, args...)
+end
+
+function evaluate(a::Atom, args...)
     assert_same_length(a, args...)
     return a.p(args...)
 end

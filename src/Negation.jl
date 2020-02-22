@@ -6,7 +6,12 @@ struct Negation{N, T<:Predicate{N}} <: Predicate{N}
     end
 end
 
-function evaluate(n::Negation{N}, args...) where {N}
+# function-like evaluation
+@inline function (n::Negation)(args...)
+    evaluate(n, args...)
+end
+
+function evaluate(n::Negation, args...)
     assert_same_length(n, args...)
     return !evaluate(n.p, args...)
 end

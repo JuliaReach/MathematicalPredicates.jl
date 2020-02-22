@@ -11,7 +11,12 @@ function Disjunction(disjuncts::AbstractVector{<:Predicate{Val{1}}})
     return Disjunction([(d, [1]) for d in disjuncts])
 end
 
-function evaluate(d::Disjunction{N}, args...) where {N}
+# function-like evaluation
+@inline function (d::Disjunction)(args...)
+    evaluate(d, args...)
+end
+
+function evaluate(d::Disjunction, args...)
     assert_same_length(d, args...)
     for (conjunct, n_args) in d.disjuncts
         if evaluate(conjunct, args[n_args]...)

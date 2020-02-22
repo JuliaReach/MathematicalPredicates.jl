@@ -12,7 +12,12 @@ function Conjunction(conjuncts::AbstractVector{<:Predicate{Val{1}}})
     return Conjunction([(c, [1]) for c in conjuncts])
 end
 
-function evaluate(c::Conjunction{N}, args...) where {N}
+# function-like evaluation
+@inline function (c::Conjunction)(args...)
+    evaluate(c, args...)
+end
+
+function evaluate(c::Conjunction, args...)
     assert_same_length(c, args...)
     for (conjunct, n_args) in c.conjuncts
         if !evaluate(conjunct, args[n_args]...)
