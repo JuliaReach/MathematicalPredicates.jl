@@ -7,6 +7,7 @@ mathematical predicates.
 
 ```@contents
 Pages = [
+    "lib/predicates.md",
 ]
 Depth = 2
 ```
