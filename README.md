@@ -2,7 +2,7 @@
 
 
 [![Build Status](https://travis-ci.org/JuliaReach/MathematicalPredicates.jl.svg?branch=master)](https://travis-ci.org/JuliaReach/MathematicalPredicates.jl)
-[![Docs latest](https://img.shields.io/badge/docs-latest-blue.svg)](http://juliareach.github.io/MathematicalPredicates.jl/latest/)
+[![Docs latest](https://img.shields.io/badge/docs-latest-blue.svg)](http://juliareach.github.io/MathematicalPredicates.jl/dev/)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/JuliaReach/MathematicalPredicates.jl/blob/master/LICENSE)
 [![Code coverage](http://codecov.io/github/JuliaReach/MathematicalPredicates.jl/coverage.svg?branch=master)](https://codecov.io/github/JuliaReach/MathematicalPredicates.jl?branch=master)
 [![Join the chat at https://gitter.im/JuliaReach/Lobby](https://badges.gitter.im/JuliaReach/Lobby.svg)](https://gitter.im/JuliaReach/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
