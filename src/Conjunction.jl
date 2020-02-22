@@ -5,11 +5,11 @@ struct Conjunction{N, VT<:AbstractVector{<:Tuple{<:Predicate, <:AbstractVector{I
                         ) where {VT<:AbstractVector{<:Tuple{<:Predicate, <:AbstractVector{Int}}}}
         return new{Val{N}, VT}(conjuncts)
     end
+end
 
-    # constructor for unary conjunction with only unary conjuncts
-    function Conjunction(conjuncts::AbstractVector{<:Predicate{Val{1}}})
-        return Conjunction([(c, [1]) for c in conjuncts])
-    end
+# constructor for unary conjunction with only unary conjuncts
+function Conjunction(conjuncts::AbstractVector{<:Predicate{Val{1}}})
+    return Conjunction([(c, [1]) for c in conjuncts])
 end
 
 function evaluate(c::Conjunction{N}, args...) where {N}
