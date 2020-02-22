@@ -1,3 +1,12 @@
+"""
+    Disjunction{N, VT<:AbstractVector{<:Tuple{<:Predicate, <:AbstractVector{Int}}}} <: Predicate{N}
+
+A disjunction of predicates of arity `N`.
+
+### Fields
+
+- `disjuncts` -- vector of disjuncts
+"""
 struct Disjunction{N, VT<:AbstractVector{<:Tuple{<:Predicate, <:AbstractVector{Int}}}} <: Predicate{N}
     disjuncts::VT
 
@@ -6,6 +15,7 @@ struct Disjunction{N, VT<:AbstractVector{<:Tuple{<:Predicate, <:AbstractVector{I
         return new{Val{N}, VT}(disjuncts)
     end
 end
+
 # constructor for unary disjunction with only unary disjuncts
 function Disjunction(disjuncts::AbstractVector{<:Predicate{Val{1}}})
     return Disjunction([(d, [1]) for d in disjuncts])

@@ -1,3 +1,12 @@
+"""
+    Negation{N, T<:Predicate{N}} <: Predicate{N}
+
+A negation of a predicate of arity `N`.
+
+### Fields
+
+- `p` -- Julia predicate
+"""
 struct Negation{N, T<:Predicate{N}} <: Predicate{N}
     p::T
 

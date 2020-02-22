@@ -1,3 +1,12 @@
+"""
+    Conjunction{N, VT<:AbstractVector{<:Tuple{<:Predicate, <:AbstractVector{Int}}}} <: Predicate{N}
+
+A conjunction of predicates of arity `N`.
+
+### Fields
+
+- `conjuncts` -- vector of conjuncts
+"""
 struct Conjunction{N, VT<:AbstractVector{<:Tuple{<:Predicate, <:AbstractVector{Int}}}} <: Predicate{N}
     conjuncts::VT
 
