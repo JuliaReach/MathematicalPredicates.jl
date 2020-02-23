@@ -1,7 +1,7 @@
 export SetAtom, contains, iscontainedin, isdisjointfrom, intersects
+import .LazySets: dim, project
 
 using .LazySets: LazySet, ⊆, isdisjoint
-import .LazySets: dim, project
 
 """
     SetAtom{S<:LazySet, T} <: Predicate{Val{1}}

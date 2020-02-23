@@ -2,7 +2,7 @@ __precompile__(true)
 
 module MathematicalPredicates
 
-export Atom, Negation, Conjunction, Disjunction,
+export Predicate, Atom, Negation, Conjunction, Disjunction,
        evaluate
 
 include("Predicate.jl")
