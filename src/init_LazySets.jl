@@ -32,13 +32,57 @@ function evaluate(sa::SetAtom, args...)
     return sa.f(sa.X, args...)
 end
 
+function Base.:(==)(sa1::SetAtom, sa2::SetAtom)
+    return sa1.X == sa2.X && sa1.f == sa2.f
+end
+
+# ===========================
+# Dimension of set predicates
+# ===========================
+
 function dim(sa::SetAtom)
     return dim(sa.X)
 end
 
+# fallback
+function dim(p::Predicate)
+    throw(ArgumentError("`dim` cannot be applied to a `$(typeof(p))`; use a " *
+                        "`SetAtom` instead"))
+end
+
+# ============================
+# Projection of set predicates
+# ============================
+
 function project(sa::SetAtom, vars::AbstractVector{Int})
     X_proj = project(sa.X, vars)
     return SetAtom(X_proj, sa.f)
+end
+
+# fallback
+function project(p::Predicate, vars::AbstractVector{Int})
+    throw(ArgumentError("`project` cannot be applied to a `$(typeof(p))`; " *
+                        "use a `SetAtom` instead"))
+end
+
+function project(n::Negation, vars::AbstractVector{Int})
+    return Negation(project(n.p, vars))
+end
+
+function project(c::Conjunction, vars::AbstractVector{Int})
+    conjuncts = similar(c.conjuncts)
+    @inbounds for (i, (conjunct, n_args)) in enumerate(c.conjuncts)
+        conjuncts[i] = (project(conjunct, vars), n_args)
+    end
+    return Conjunction(conjuncts)
+end
+
+function project(d::Disjunction, vars::AbstractVector{Int})
+    disjuncts = similar(d.disjuncts)
+    @inbounds for (i, (disjunct, n_args)) in enumerate(d.disjuncts)
+        disjuncts[i] = (project(disjunct, vars), n_args)
+    end
+    return Disjunction(disjuncts)
 end
 
 # ==========================================
