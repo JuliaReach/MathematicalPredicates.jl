@@ -7,7 +7,7 @@ S_proj = project(S, [1])
 B1_proj = project(B1, [1])
 B2_proj = project(B2, [1])
 
-P1 = iscontainedin(B1)
+P1 = is_contained_in(B1)
 @test P1(S) && P1(B1) && !P1(B2)
 
 P2 = contains(S)
@@ -30,7 +30,7 @@ Pd = Disjunction([P1, P2])
 @test project(Pc, [1]) == Conjunction([P1_proj, P2_proj])
 @test project(Pd, [1]) == Disjunction([P1_proj, P2_proj])
 
-P1 = isdisjointfrom(S)
+P1 = is_disjoint_from(S)
 P2 = intersects(S)
 @test !P1(S) && !P1(B1) && P1(B2)
 @test P2(S) && P2(B1) && !P2(B2)
