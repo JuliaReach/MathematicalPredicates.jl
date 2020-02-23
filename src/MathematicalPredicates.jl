@@ -1,3 +1,5 @@
+__precompile__(true)
+
 module MathematicalPredicates
 
 export Atom, Negation, Conjunction, Disjunction,
