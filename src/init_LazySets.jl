@@ -1,4 +1,4 @@
-export SetAtom, contains, iscontainedin, isdisjointfrom, intersects
+export SetAtom, contains, is_contained_in, is_disjoint_from, intersects
 import .LazySets: dim, project
 
 using .LazySets: LazySet, ⊆, isdisjoint
@@ -93,14 +93,14 @@ function contains(X::LazySet)
     return SetAtom(X, ⊆)
 end
 
-function iscontainedin(X::LazySet)
+function is_contained_in(X::LazySet)
     return SetAtom(X, (X, Y) -> Y ⊆ X)
 end
 
-function isdisjointfrom(X::LazySet)
+function is_disjoint_from(X::LazySet)
     return SetAtom(X, isdisjoint)
 end
 
 function intersects(X::LazySet)
-    return Negation(isdisjointfrom(X))
+    return Negation(is_disjoint_from(X))
 end
