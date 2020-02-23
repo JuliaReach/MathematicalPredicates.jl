@@ -21,6 +21,10 @@ function Conjunction(conjuncts::AbstractVector{<:Predicate{Val{1}}})
     return Conjunction([(c, [1]) for c in conjuncts])
 end
 
+function Base.:(==)(c1::Conjunction, c2::Conjunction)
+    return c1.conjuncts == c2.conjuncts
+end
+
 # function-like evaluation
 @inline function (c::Conjunction)(args...)
     evaluate(c, args...)
@@ -28,7 +32,7 @@ end
 
 function evaluate(c::Conjunction, args...)
     assert_same_length(c, args...)
-    for (conjunct, n_args) in c.conjuncts
+    @inbounds for (conjunct, n_args) in c.conjuncts
         if !evaluate(conjunct, args[n_args]...)
             return false
         end

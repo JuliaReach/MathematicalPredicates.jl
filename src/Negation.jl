@@ -15,6 +15,10 @@ struct Negation{N, T<:Predicate{N}} <: Predicate{N}
     end
 end
 
+function Base.:(==)(n1::Negation, n2::Negation)
+    return n1.p == n2.p
+end
+
 # function-like evaluation
 @inline function (n::Negation)(args...)
     evaluate(n, args...)
