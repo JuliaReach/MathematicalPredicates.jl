@@ -15,6 +15,10 @@ struct Atom{N, T} <: Predicate{N}
     end
 end
 
+function Base.:(==)(a1::Atom, a2::Atom)
+    return a1.p == a2.p
+end
+
 # function-like evaluation
 @inline function (a::Atom)(args...)
     evaluate(a, args...)
