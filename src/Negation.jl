@@ -5,7 +5,7 @@ A negation of a predicate of arity `N`.
 
 ### Fields
 
-- `p` -- Julia predicate
+- `p` -- predicate
 """
 struct Negation{N, T<:Predicate{N}} <: Predicate{N}
     p::T
