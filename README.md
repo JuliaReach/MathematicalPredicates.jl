@@ -13,12 +13,11 @@
 
 ## Resources
 
-- [Manual](http://juliareach.github.io/MathematicalPredicates.jl/latest/)
-- [Contributing](https://juliareach.github.io/MathematicalPredicates.jl/latest/about/#Contributing-1)
+- [Manual](http://juliareach.github.io/MathematicalPredicates.jl/dev/)
+- [Contributing](https://juliareach.github.io/MathematicalPredicates.jl/dev/about/#Contributing-1)
 - [Release notes of tagged versions](https://github.com/JuliaReach/MathematicalPredicates.jl/releases)
 - [Release notes of the development version](https://github.com/JuliaReach/MathematicalPredicates.jl/wiki/Release-log-tracker)
-- [Publications](https://juliareach.github.io/Reachability.jl/latest/publications/)
-- [Developers](https://juliareach.github.io/MathematicalPredicates.jl/latest/about/#Credits-1)
+- [Developers](https://juliareach.github.io/MathematicalPredicates.jl/dev/about/#Core-developers-1)
 
 ## Installing
 
