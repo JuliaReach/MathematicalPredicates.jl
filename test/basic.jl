@@ -3,6 +3,7 @@ a0 = Atom(() -> true; N=0)
 a1 = Atom(x -> x > 1)
 a2 = Atom((x, y) -> x > y; N=2)
 
+@test a0 == a0 && a0 != a1
 @test evaluate(a0) && a0()
 @test evaluate(a1, 4) && a1(4)
 @test !evaluate(a2, 4, 5) && !a2(4, 5)
@@ -13,6 +14,7 @@ n0 = Negation(a0)
 n1 = Negation(a1)
 n2 = Negation(a2)
 
+@test n0 == n0 && n0 != n1
 @test !evaluate(n0) && !n0()
 @test !evaluate(n1, 4) && !n1(4)
 @test evaluate(n2, 4, 5) && n2(4, 5)
@@ -26,6 +28,7 @@ c1_3 = Conjunction([(a0, Int[]), (a1, Int[1]), (a1, Int[1])]; N=1)
 c2 = Conjunction([(a2, Int[2, 1]), (a2, Int[1, 2])]; N=2)
 c2_3 = Conjunction([(a0, Int[]), (a1, Int[2]), (a2, Int[2, 1])]; N=2)
 
+@test c0 == c0 && c0 != c1
 @test !evaluate(c0) && !c0()
 @test evaluate(c0_3) && c0_3()
 @test evaluate(c1, 4) && c1(4)
@@ -45,6 +48,7 @@ d1_3 = Disjunction([(a0, Int[]), (a1, Int[1]), (a1, Int[1])]; N=1)
 d2 = Disjunction([(a2, Int[2, 1]), (a2, Int[1, 2])]; N=2)
 d2_3 = Disjunction([(a0, Int[]), (a1, Int[2]), (a2, Int[2, 1])]; N=2)
 
+@test d0 == d0 && d0 != d1
 @test evaluate(d0) && d0()
 @test !evaluate(d0_3) && !d0_3()
 @test evaluate(d1, 4) && d1(4)

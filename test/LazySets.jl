@@ -13,6 +13,15 @@ P1 = is_contained_in(B1)
 P2 = contains(S)
 @test P2(S) && P2(B1) && !P2(B2)
 
+# dim is only available for SetAtom types
+A1 = Atom(x -> x > 1)
+@test_throws ArgumentError dim(A1)
+
+# project is only available for SetAtom (and their Negation) types
+@test_throws ArgumentError project(A1, [1])
+
+@test project(Negation(P1), [1]) == Negation(project(P1, [1]))
+
 @test dim(P1) == dim(P2) == 2
 P1_proj = project(P1, [1])
 P2_proj = project(P2, [1])
