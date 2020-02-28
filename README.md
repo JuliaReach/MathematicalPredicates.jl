@@ -9,8 +9,6 @@
 
 `MathematicalPredicates` is a [Julia](http://julialang.org) package for defining (mathematical) predicates.
 
->  :warning: This package is still a work-in-progress. If you are interested feel free to join the discussion at the [JuliaReach gitter channel](https://gitter.im/JuliaReach/Lobby).
-
 ## Resources
 
 - [Manual](http://juliareach.github.io/MathematicalPredicates.jl/dev/)
