@@ -5,17 +5,26 @@ language: julia
 
 os:
   - linux
+  - osx
 
 julia:
   - 1.0
   - 1.2
   - 1.3
+  - nightly
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - julia: nightly
+
+# avoid duplicate tests in PRs
+branches:
+  only:
+    - master
 
 notifications:
   email: false
-
-git:
-  depth: 99999999
 
 jobs:
   include:
