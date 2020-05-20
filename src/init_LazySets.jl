@@ -1,6 +1,10 @@
 export SetAtom, contains, is_contained_in, is_disjoint_from, intersects
 import .LazySets: dim, project
 
+if VERSION >= v"1.5"
+    import Base: contains
+end
+
 using .LazySets: LazySet, ⊆, isdisjoint
 
 """
