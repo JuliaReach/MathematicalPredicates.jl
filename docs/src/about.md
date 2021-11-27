@@ -105,5 +105,5 @@ library, as well as past and present contributors (in alphabetic order).
 
 ### Core developers
 
-- [Marcelo Forets](http://github.com/mforets), Universidad de la República
-- [Christian Schilling](https://schillic.github.io/), IST Austria
+- [Marcelo Forets](http://github.com/mforets)
+- [Christian Schilling](https://www.christianschilling.net/)
