@@ -1,4 +1,5 @@
 using Documenter, MathematicalPredicates
+import LazySets
 
 DocMeta.setdocmeta!(MathematicalPredicates, :DocTestSetup,
                     :(using MathematicalPredicates); recursive=true)
@@ -17,5 +18,5 @@ makedocs(
 )
 
 deploydocs(
-    repo = "github.com/JuliaReach/MathematicalPredicates.jl.git",
+    repo = "github.com/JuliaReach/MathematicalPredicates.jl.git"
 )

@@ -8,14 +8,15 @@ mathematical predicates.
 ```@contents
 Pages = [
     "lib/predicates.md",
+    "lib/LazySets.md",
 ]
 Depth = 2
 ```
 
 ## Related packages
 
-* [Reachability.jl](https://github.com/JuliaReach/Reachability.jl) uses this
-package to represent safety properties.
+* [ReachabilityAnalysis.jl](https://github.com/JuliaReach/ReachabilityAnalysis.jl)
+uses this package to represent safety properties.
 * [FirstOrderLogic.jl](https://github.com/roberthoenig/FirstOrderLogic.jl)
 processes formulas in first-order logic.
 * [GeometricalPredicates.jl](https://github.com/JuliaGeometry/GeometricalPredicates.jl)
