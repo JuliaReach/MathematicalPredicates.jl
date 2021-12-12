@@ -9,7 +9,7 @@ makedocs(
     modules = [MathematicalPredicates],
     format = Documenter.HTML(
         prettyurls = get(ENV, "CI", nothing) == "true",
-        assets = ["assets/juliareach.css"]),
+        assets = ["assets/aligned.css"]),
     pages = [
         "Home" => "index.md",
         "About" => "about.md"
@@ -18,5 +18,6 @@ makedocs(
 )
 
 deploydocs(
-    repo = "github.com/JuliaReach/MathematicalPredicates.jl.git"
+    repo = "github.com/JuliaReach/MathematicalPredicates.jl.git",
+    push_preview = true
 )
