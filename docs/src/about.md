@@ -46,24 +46,17 @@ name of the issue for easier lookup, e.g., `mforets/7`.
 
 ### Unit testing and continuous integration (CI)
 
-This project is synchronized with Travis CI such that each PR gets tested before
-merging (and the build is automatically triggered after each new commit).
-For the maintainability of this project, it is important to understand and fix
-the failing unit tests if they exist.
-
-When you modify code in this package, you should make sure that all unit tests
+This project is synchronized with GitHub Actions such that each PR gets tested
+before merging (and the build is automatically triggered after each new commit).
+For the maintainability of this project, it is important to make all unit tests
 pass.
+
 To run the unit tests locally, you can do:
 
-```
-$ julia --color=yes test/runtests.jl
-```
-
-Alternatively, you can achieve the same from the REPL using the following
-command:
-
 ```julia
-pkg> test MathematicalPredicates
+julia> using Pkg
+
+julia> Pkg.test("MathematicalPredicates")
 ```
 
 We also advise adding new unit tests when adding new features to ensure
@@ -77,7 +70,7 @@ New functions and types should be documented according to the
 You can view the source-code documentation from inside the REPL by typing `?`
 followed by the name of the type or function.
 
-```julia
+```
 julia> ?my_function
 ```
 
@@ -94,7 +87,7 @@ for examples).
 To generate the documentation locally, run `make.jl`, e.g., by executing the
 following command in the terminal:
 
-```
+```bash
 $ julia --color=yes docs/make.jl
 ```
 
