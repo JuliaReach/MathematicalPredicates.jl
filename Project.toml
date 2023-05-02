@@ -6,12 +6,5 @@ version = "0.1.0"
 Requires = "ae029012-a4dd-5104-9daa-d747884805df"
 
 [compat]
-julia = "1"
 Requires = "0.5, 1"
-
-[extras]
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
-LazySets = "b4f0291d-fe17-52bc-9479-3d1a343d9043"
-
-[targets]
-test = ["LazySets", "Test"]
+julia = "1"
