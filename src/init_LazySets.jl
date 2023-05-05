@@ -17,18 +17,18 @@ A unary atomic predicate defined with respect to a set.
 - `X` -- set
 - `f` -- function that takes the set `X` as first argument
 """
-struct SetAtom{S<:LazySet, T} <: Predicate{Val{1}}
+struct SetAtom{S<:LazySet,T} <: Predicate{Val{1}}
     X::S
     f::T
 
-    function SetAtom(X::S, f::T) where {S<:LazySet, T}
-        return new{S, T}(X, f)
+    function SetAtom(X::S, f::T) where {S<:LazySet,T}
+        return new{S,T}(X, f)
     end
 end
 
 # function-like evaluation
 @inline function (sa::SetAtom)(args...)
-    evaluate(sa, args...)
+    return evaluate(sa, args...)
 end
 
 function evaluate(sa::SetAtom, args...)
