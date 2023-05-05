@@ -7,12 +7,13 @@ A conjunction of predicates of arity `N`.
 
 - `conjuncts` -- vector of conjuncts
 """
-struct Conjunction{N, VT<:AbstractVector{<:Tuple{<:Predicate, <:AbstractVector{Int}}}} <: Predicate{N}
+struct Conjunction{N,VT<:AbstractVector{<:Tuple{<:Predicate,<:AbstractVector{Int}}}} <: Predicate{N}
     conjuncts::VT
 
-    function Conjunction(conjuncts::VT; N::Int=maximum([length(v) for (p, v) in conjuncts])
-                        ) where {VT<:AbstractVector{<:Tuple{<:Predicate, <:AbstractVector{Int}}}}
-        return new{Val{N}, VT}(conjuncts)
+    function Conjunction(conjuncts::VT;
+                         N::Int=maximum([length(v) for (p, v) in conjuncts])) where {VT<:AbstractVector{<:Tuple{<:Predicate,
+                                                                                                                <:AbstractVector{Int}}}}
+        return new{Val{N},VT}(conjuncts)
     end
 end
 
@@ -27,7 +28,7 @@ end
 
 # function-like evaluation
 @inline function (c::Conjunction)(args...)
-    evaluate(c, args...)
+    return evaluate(c, args...)
 end
 
 function evaluate(c::Conjunction, args...)

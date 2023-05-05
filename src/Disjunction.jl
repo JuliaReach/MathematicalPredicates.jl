@@ -7,12 +7,13 @@ A disjunction of predicates of arity `N`.
 
 - `disjuncts` -- vector of disjuncts
 """
-struct Disjunction{N, VT<:AbstractVector{<:Tuple{<:Predicate, <:AbstractVector{Int}}}} <: Predicate{N}
+struct Disjunction{N,VT<:AbstractVector{<:Tuple{<:Predicate,<:AbstractVector{Int}}}} <: Predicate{N}
     disjuncts::VT
 
-    function Disjunction(disjuncts::VT; N::Int=maximum([length(v) for (p, v) in disjuncts])
-                        ) where {VT<:AbstractVector{<:Tuple{<:Predicate, <:AbstractVector{Int}}}}
-        return new{Val{N}, VT}(disjuncts)
+    function Disjunction(disjuncts::VT;
+                         N::Int=maximum([length(v) for (p, v) in disjuncts])) where {VT<:AbstractVector{<:Tuple{<:Predicate,
+                                                                                                                <:AbstractVector{Int}}}}
+        return new{Val{N},VT}(disjuncts)
     end
 end
 
@@ -27,7 +28,7 @@ end
 
 # function-like evaluation
 @inline function (d::Disjunction)(args...)
-    evaluate(d, args...)
+    return evaluate(d, args...)
 end
 
 function evaluate(d::Disjunction, args...)

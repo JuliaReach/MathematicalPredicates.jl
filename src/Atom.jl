@@ -7,11 +7,11 @@ An atomic predicate of arity `N`.
 
 - `p` -- Julia predicate
 """
-struct Atom{N, T} <: Predicate{N}
+struct Atom{N,T} <: Predicate{N}
     p::T
 
     function Atom(p::T; N::Int=1) where {T}
-        return new{Val{N}, T}(p)
+        return new{Val{N},T}(p)
     end
 end
 
@@ -21,7 +21,7 @@ end
 
 # function-like evaluation
 @inline function (a::Atom)(args...)
-    evaluate(a, args...)
+    return evaluate(a, args...)
 end
 
 function evaluate(a::Atom, args...)
