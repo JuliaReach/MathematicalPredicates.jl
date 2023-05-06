@@ -1,3 +1,6 @@
 [deps]
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 LazySets = "b4f0291d-fe17-52bc-9479-3d1a343d9043"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[compat]
+LazySets = "2"
