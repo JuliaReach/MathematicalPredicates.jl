@@ -8,9 +8,11 @@ makedocs(; sitename="MathematicalPredicates.jl",
          modules=[MathematicalPredicates],
          format=Documenter.HTML(; prettyurls=get(ENV, "CI", nothing) == "true",
                                 assets=["assets/aligned.css"]),
+         pagesonly=true,
          pages=["Home" => "index.md",
-                "About" => "about.md"],
-         strict=true)
+                "Library" => ["Predicates" => "lib/predicates.md",
+                              "LazySets integration" => "lib/LazySets.md"],
+                "About" => "about.md"])
 
 deploydocs(; repo="github.com/JuliaReach/MathematicalPredicates.jl.git",
            push_preview=true)
