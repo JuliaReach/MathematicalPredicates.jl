@@ -24,9 +24,6 @@ Typical contributions include fixing a bug, adding a new feature, or improving
 the documentation (either in source code or the
 [online manual](https://juliareach.github.io/MathematicalPredicates.jl/latest/man/getting_started/)).
 
-You are also welcome to get in touch with us in the
-[JuliaReach gitter chat](https://gitter.im/JuliaReach/Lobby).
-
 Below we give some general comments about contributing to this package.
 The
 [JuliaReach development documentation](https://juliareach.github.io/JuliaReachDevDocs/latest/)
