@@ -6,3 +6,5 @@ end
 @time @testset "LazySets support" begin
     include("LazySets.jl")
 end
+
+include("Aqua.jl")
