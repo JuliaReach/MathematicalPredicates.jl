@@ -1,9 +1,5 @@
-export SetAtom, contains, is_contained_in, is_disjoint_from, intersects
+export SetAtom, is_contained_in, is_disjoint_from, intersects
 import .LazySets: dim, project
-
-@static if VERSION >= v"1.5"
-    import Base: contains
-end
 
 using .LazySets: LazySet, ⊆, isdisjoint
 
@@ -64,7 +60,7 @@ function project(sa::SetAtom, vars::AbstractVector{Int})
 end
 
 # fallback
-function project(p::Predicate, vars::AbstractVector{Int})
+function project(p::Predicate, ::AbstractVector{Int})
     throw(ArgumentError("`project` cannot be applied to a `$(typeof(p))`; " *
                         "use a `SetAtom` instead"))
 end
@@ -89,13 +85,9 @@ function project(d::Disjunction, vars::AbstractVector{Int})
     return Disjunction(disjuncts)
 end
 
-# ==========================================
-# Convenience functions to create predicates
-# ==========================================
-
-function contains(X::LazySet)
-    return SetAtom(X, ⊆)
-end
+# =====================================================
+# Convenience functions to create common set predicates
+# =====================================================
 
 function is_contained_in(X::LazySet)
     return SetAtom(X, (X, Y) -> Y ⊆ X)

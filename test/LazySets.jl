@@ -10,7 +10,7 @@ B2_proj = project(B2, [1])
 P1 = is_contained_in(B1)
 @test P1(S) && P1(B1) && !P1(B2)
 
-P2 = contains(S)
+P2 = SetAtom(S, ⊆)
 @test P2(S) && P2(B1) && !P2(B2)
 
 # dim is only available for SetAtom types
