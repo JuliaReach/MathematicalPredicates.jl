@@ -1,4 +1,4 @@
-export SetAtom, is_contained_in, is_disjoint_from, intersects
+export SetAtom, X_superset_of, X_subset_of, X_disjoint_from, X_intersects_with
 import .LazySets: dim, project
 
 using .LazySets: LazySet, ⊆, isdisjoint
@@ -89,14 +89,18 @@ end
 # Convenience functions to create common set predicates
 # =====================================================
 
-function is_contained_in(X::LazySet)
-    return SetAtom(X, (X, Y) -> Y ⊆ X)
+function X_superset_of(Y::LazySet)
+    return SetAtom(Y, ⊆)
 end
 
-function is_disjoint_from(X::LazySet)
-    return SetAtom(X, isdisjoint)
+function X_subset_of(Y::LazySet)
+    return SetAtom(Y, (Y, X) -> X ⊆ Y)
 end
 
-function intersects(X::LazySet)
-    return Negation(is_disjoint_from(X))
+function X_disjoint_from(Y::LazySet)
+    return SetAtom(Y, isdisjoint)
+end
+
+function X_intersects_with(Y::LazySet)
+    return Negation(X_disjoint_from(Y))
 end
