@@ -1,5 +1,3 @@
-__precompile__(true)
-
 module MathematicalPredicates
 
 export Predicate, Atom, Negation, Conjunction, Disjunction,
@@ -11,7 +9,7 @@ include("Negation.jl")
 include("Conjunction.jl")
 include("Disjunction.jl")
 
-# external functionality using 'Requires'
+# optional dependencies
 using Requires
 include("init.jl")
 
