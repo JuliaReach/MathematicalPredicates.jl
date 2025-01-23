@@ -1,11 +1,20 @@
+module LazySetsExt
+
+using MathematicalPredicates
+
 export contains, is_contained_in, is_disjoint_from, intersects
-import .LazySets: dim, project
 
 @static if VERSION >= v"1.5"
     import Base: contains
 end
 
-using .LazySets: LazySet, ⊆, isdisjoint
+@static if isdefined(Base, :get_extension)
+    import LazySets: dim, project
+    using LazySets: LazySet, ⊆, isdisjoint
+else
+    import ..LazySets: dim, project
+    using ..LazySets: LazySet, ⊆, isdisjoint
+end
 
 const SetAtom = CurryAtom{<:Any,<:LazySet}
 
@@ -77,3 +86,5 @@ end
 function intersects(X::LazySet)
     return Negation(is_disjoint_from(X))
 end
+
+end  # module
