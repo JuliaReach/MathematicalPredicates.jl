@@ -10,8 +10,6 @@ include("Conjunction.jl")
 include("Disjunction.jl")
 include("CurryAtom.jl")
 
-# optional dependencies
-using Requires: @require
 include("init.jl")
 
 end  # module
