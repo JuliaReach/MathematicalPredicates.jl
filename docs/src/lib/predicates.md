@@ -39,3 +39,9 @@ Conjunction
 ```@docs
 Disjunction
 ```
+
+## CurryAtom
+
+```@docs
+CurryAtom
+```
