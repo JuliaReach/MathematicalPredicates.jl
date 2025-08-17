@@ -1,6 +1,6 @@
 name = "MathematicalPredicates"
 uuid = "d92ed5c0-d2da-11e9-1f26-3721184dea2b"
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 Requires = "ae029012-a4dd-5104-9daa-d747884805df"
