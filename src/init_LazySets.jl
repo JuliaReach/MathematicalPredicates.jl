@@ -1,4 +1,4 @@
-export SetAtom, contains, is_contained_in, is_disjoint_from, intersects
+export contains, is_contained_in, is_disjoint_from, intersects
 import .LazySets: dim, project
 
 @static if VERSION >= v"1.5"
@@ -7,51 +7,20 @@ end
 
 using .LazySets: LazySet, ⊆, isdisjoint
 
-"""
-    SetAtom{S<:LazySet, T} <: Predicate{Val{1}}
-
-A unary atomic predicate defined with respect to a set.
-
-### Fields
-
-- `X` -- set
-- `f` -- function that takes the set `X` as first argument
-"""
-struct SetAtom{S<:LazySet,T} <: Predicate{Val{1}}
-    X::S
-    f::T
-
-    function SetAtom(X::S, f::T) where {S<:LazySet,T}
-        return new{S,T}(X, f)
-    end
-end
-
-# function-like evaluation
-@inline function (sa::SetAtom)(args...)
-    return evaluate(sa, args...)
-end
-
-function evaluate(sa::SetAtom, args...)
-    assert_same_length(sa, args...)
-    return sa.f(sa.X, args...)
-end
-
-function Base.:(==)(sa1::SetAtom, sa2::SetAtom)
-    return sa1.X == sa2.X && sa1.f == sa2.f
-end
+const SetAtom = CurryAtom{<:Any,<:LazySet}
 
 # ===========================
 # Dimension of set predicates
 # ===========================
 
 function dim(sa::SetAtom)
-    return dim(sa.X)
+    return dim(sa.arg1)
 end
 
 # fallback
 function dim(p::Predicate)
     throw(ArgumentError("`dim` cannot be applied to a `$(typeof(p))`; use a " *
-                        "`SetAtom` instead"))
+                        "`CurryAtom` with a set instead"))
 end
 
 # ============================
@@ -59,14 +28,14 @@ end
 # ============================
 
 function project(sa::SetAtom, vars::AbstractVector{Int})
-    X_proj = project(sa.X, vars)
-    return SetAtom(X_proj, sa.f)
+    X_proj = project(sa.arg1, vars)
+    return CurryAtom(X_proj, sa.p)
 end
 
 # fallback
-function project(p::Predicate, vars::AbstractVector{Int})
+function project(p::Predicate, ::AbstractVector{Int})
     throw(ArgumentError("`project` cannot be applied to a `$(typeof(p))`; " *
-                        "use a `SetAtom` instead"))
+                        "use a `CurryAtom` with a set instead"))
 end
 
 function project(n::Negation, vars::AbstractVector{Int})
@@ -94,15 +63,15 @@ end
 # ==========================================
 
 function contains(X::LazySet)
-    return SetAtom(X, ⊆)
+    return CurryAtom(X, Atom(⊆; N=2))
 end
 
 function is_contained_in(X::LazySet)
-    return SetAtom(X, (X, Y) -> Y ⊆ X)
+    return CurryAtom(X, Atom((X, Y) -> Y ⊆ X; N=2))
 end
 
 function is_disjoint_from(X::LazySet)
-    return SetAtom(X, isdisjoint)
+    return CurryAtom(X, Atom(isdisjoint; N=2))
 end
 
 function intersects(X::LazySet)
