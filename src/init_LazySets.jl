@@ -3,9 +3,13 @@ import .LazySets: dim, project
 
 @static if VERSION >= v"1.5"
     import Base: contains
+    using Base: isdisjoint
+else
+    using .LazySets: isdisjoint
 end
 
-using .LazySets: LazySet, ⊆, isdisjoint
+using Base: ⊆
+using .LazySets: LazySet
 
 """
     SetAtom{S<:LazySet, T} <: Predicate{Val{1}}
