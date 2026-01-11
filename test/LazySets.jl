@@ -13,11 +13,11 @@ P1 = is_contained_in(B1)
 P2 = contains(S)
 @test P2(S) && P2(B1) && !P2(B2)
 
-# dim is only available for SetAtom types
+# dim is only available for CurryAtom types
 A1 = Atom(x -> x > 1)
 @test_throws ArgumentError dim(A1)
 
-# project is only available for SetAtom (and their Negation) types
+# project is only available for CurryAtom (and their Negation) types
 @test_throws ArgumentError project(A1, [1])
 
 @test project(Negation(P1), [1]) == Negation(project(P1, [1]))
@@ -25,9 +25,9 @@ A1 = Atom(x -> x > 1)
 @test dim(P1) == dim(P2) == 2
 P1_proj = project(P1, [1])
 P2_proj = project(P2, [1])
-@test P1_proj isa SetAtom && dim(P1_proj) == 1 && P1_proj.X == B1_proj
+@test P1_proj isa CurryAtom && dim(P1_proj) == 1 && P1_proj.arg1 == B1_proj
 @test P1_proj(S_proj) && P1_proj(B1_proj) && !P1_proj(B2_proj)
-@test P2_proj isa SetAtom && dim(P2_proj) == 1 && P2_proj.X == S_proj
+@test P2_proj isa CurryAtom && dim(P2_proj) == 1 && P2_proj.arg1 == S_proj
 @test P2_proj(S_proj) && P2_proj(B1_proj) && !P2_proj(B2_proj)
 
 Pc = Conjunction([P1, P2])

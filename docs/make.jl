@@ -10,8 +10,7 @@ makedocs(; sitename="MathematicalPredicates.jl",
                                 assets=["assets/aligned.css"]),
          pagesonly=true,
          pages=["Home" => "index.md",
-                "Library" => ["Predicates" => "lib/predicates.md",
-                              "LazySets integration" => "lib/LazySets.md"],
+                "Library" => ["Predicates" => "lib/predicates.md"],
                 "About" => "about.md"])
 
 deploydocs(; repo="github.com/JuliaReach/MathematicalPredicates.jl.git",
