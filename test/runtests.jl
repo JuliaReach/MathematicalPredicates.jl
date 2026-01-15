@@ -7,4 +7,4 @@ end
     include("LazySets.jl")
 end
 
-include("Aqua.jl")
+include("quality_assurance.jl")
