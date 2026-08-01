@@ -54,8 +54,8 @@ end
 
 # fallback
 function dim(p::Predicate)
-    throw(ArgumentError("`dim` cannot be applied to a `$(typeof(p))`; use a " *
-                        "`SetAtom` instead"))
+    return throw(ArgumentError("`dim` cannot be applied to a `$(typeof(p))`; use a " *
+                               "`SetAtom` instead"))
 end
 
 # ============================
@@ -69,8 +69,8 @@ end
 
 # fallback
 function project(p::Predicate, vars::AbstractVector{Int})
-    throw(ArgumentError("`project` cannot be applied to a `$(typeof(p))`; " *
-                        "use a `SetAtom` instead"))
+    return throw(ArgumentError("`project` cannot be applied to a `$(typeof(p))`; " *
+                               "use a `SetAtom` instead"))
 end
 
 function project(n::Negation, vars::AbstractVector{Int})
