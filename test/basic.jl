@@ -1,4 +1,4 @@
-# atom
+# Atom
 a0 = Atom(() -> true; N=0)
 a1 = Atom(x -> x > 1)
 a2 = Atom((x, y) -> x > y; N=2)
@@ -9,7 +9,7 @@ a2 = Atom((x, y) -> x > y; N=2)
 @test !evaluate(a2, 4, 5) && !a2(4, 5)
 @test evaluate(a2, 6, 5) && a2(6, 5)
 
-# negation
+# Negation
 n0 = Negation(a0)
 n1 = Negation(a1)
 n2 = Negation(a2)
@@ -20,7 +20,7 @@ n2 = Negation(a2)
 @test evaluate(n2, 4, 5) && n2(4, 5)
 @test !evaluate(n2, 6, 5) && !n2(6, 5)
 
-# conjunction
+# Conjunction
 c0 = Conjunction([(n0, Int[]), (a0, Int[])]; N=0)
 c0_3 = Conjunction([(a0, Int[]), (a0, Int[]), (a0, Int[])]; N=0)
 c1 = Conjunction([(a0, Int[]), (a1, Int[1])]; N=1)
@@ -40,7 +40,7 @@ c2_3 = Conjunction([(a0, Int[]), (a1, Int[2]), (a2, Int[2, 1])]; N=2)
 @test Conjunction([(a0, Int[]), (a0, Int[]), (a0, Int[])]) isa Conjunction{Val{0}}
 @test Conjunction([(a0, Int[]), (a1, Int[2]), (a2, Int[2, 1])]) isa Conjunction{Val{2}}
 
-# disjunction
+# Disjunction
 d0 = Disjunction([(n0, Int[]), (a0, Int[])]; N=0)
 d0_3 = Disjunction([(n0, Int[]), (n0, Int[]), (n0, Int[])]; N=0)
 d1 = Disjunction([(c0, Int[]), (a1, Int[1])]; N=1)
@@ -56,18 +56,27 @@ d2_3 = Disjunction([(a0, Int[]), (a1, Int[2]), (a2, Int[2, 1])]; N=2)
 @test evaluate(d2, 4, 5) && d2(4, 5)
 @test evaluate(d2_3, 4, 5) && d2_3(4, 5)
 
+# CurryAtom
+ca0a = CurryAtom(2, a1; N=0)
+@test evaluate(ca0a)
+ca0b = CurryAtom(0, a1; N=0)
+@test !evaluate(ca0b)
+@test ca0a == ca0a && ca0a != ca0b
+ca1 = CurryAtom(3, a2; N=1)
+@test evaluate(ca1, 2) && !evaluate(ca1, 4)
+
 # default constructor
 @test Disjunction([(a0, Int[]), (a0, Int[]), (a0, Int[])]) isa Disjunction{Val{0}}
 @test Disjunction([(a0, Int[]), (a1, Int[2]), (a2, Int[2, 1])]) isa Disjunction{Val{2}}
 
-# unary conjunction
+# unary Conjunction
 cu = Conjunction([n1, a1])
 cu_3 = Conjunction([c1, a1, d1])
 
 @test !evaluate(cu, 5) && !cu(5)
 @test evaluate(cu_3, 5) && cu_3(5)
 
-# unary disjunction
+# unary Disjunction
 du = Disjunction([n1, a1])
 du_1 = Disjunction([n1])
 
